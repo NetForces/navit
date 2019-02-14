@@ -720,8 +720,10 @@ static struct gui_priv *gui_gtk_new(struct navit *nav, struct gui_methods *meth,
     //     y = this->y;
     // }
 
-    w = atoi(getenv("NAVIT_W"));
-    h = atoi(getenv("NAVIT_Y"));
+    // w = atoi(getenv("NAVIT_W"));
+    // h = atoi(getenv("NAVIT_Y"));
+    w = 800;
+    h = 200;
 
     g_signal_connect(G_OBJECT(this->win), "delete-event", G_CALLBACK(gui_gtk_delete), nav);
     this->vbox = gtk_vbox_new(FALSE, 0);
