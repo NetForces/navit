@@ -668,7 +668,7 @@ static void gui_gtk_init(struct gui_priv *this, struct navit *nav) {
 
 static struct gui_priv *gui_gtk_new(struct navit *nav, struct gui_methods *meth, struct attr **attrs, struct gui *gui) {
     struct gui_priv *this;
-    int w=792, h=547;
+    int w=792, h=547, x=0, y=0;
     char *cp = getenv("NAVIT_XID");
     unsigned xid = 0;
     struct attr *attr;
@@ -711,10 +711,24 @@ static struct gui_priv *gui_gtk_new(struct navit *nav, struct gui_methods *meth,
     else
         this->win = gtk_plug_new(xid);
 
+    // if (this->w && this->h) {
+    //     w = this->w;
+    //     h = this->h;
+    // }
+    // if (this->x && this->y) {
+    //     x = this->x;
+    //     y = this->y;
+    // }
+
+    w = atoi(getenv("NAVIT_W"));
+    h = atoi(getenv("NAVIT_Y"));
 
     g_signal_connect(G_OBJECT(this->win), "delete-event", G_CALLBACK(gui_gtk_delete), nav);
     this->vbox = gtk_vbox_new(FALSE, 0);
     gtk_window_set_default_size(GTK_WINDOW(this->win), w, h);
+    if (x != 0 || y != 0) {
+        gtk_window_move(GTK_WINDOW(this->win), x, y);
+    }
     gtk_window_set_title(GTK_WINDOW(this->win), "Navit");
     gtk_window_set_wmclass (GTK_WINDOW (this->win), "navit", "Navit");
     gtk_widget_realize(this->win);
