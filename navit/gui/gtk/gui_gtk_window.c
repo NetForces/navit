@@ -668,7 +668,7 @@ static void gui_gtk_init(struct gui_priv *this, struct navit *nav) {
 
 static struct gui_priv *gui_gtk_new(struct navit *nav, struct gui_methods *meth, struct attr **attrs, struct gui *gui) {
     struct gui_priv *this;
-    int w=792, h=547, x=0, y=0;
+    int w=800, h=430, x=0, y=50;
     char *cp = getenv("NAVIT_XID");
     unsigned xid = 0;
     struct attr *attr;
@@ -710,21 +710,6 @@ static struct gui_priv *gui_gtk_new(struct navit *nav, struct gui_methods *meth,
         this->win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     else
         this->win = gtk_plug_new(xid);
-
-    if (this->root.w && this->root.h){
-        w = this->root.w;
-        h = this->root.h;
-    }
-    if (this->root.x && this->root.y)
-    {
-        x = this->root.x;
-        y = this->root.y;
-    }
-
-    // w = atoi(getenv("NAVIT_W"));
-    // h = atoi(getenv("NAVIT_Y"));
-    // w = 800;
-    // h = 200;
 
     g_signal_connect(G_OBJECT(this->win), "delete-event", G_CALLBACK(gui_gtk_delete), nav);
     this->vbox = gtk_vbox_new(FALSE, 0);
