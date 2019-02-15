@@ -711,19 +711,20 @@ static struct gui_priv *gui_gtk_new(struct navit *nav, struct gui_methods *meth,
     else
         this->win = gtk_plug_new(xid);
 
-    // if (this->w && this->h) {
-    //     w = this->w;
-    //     h = this->h;
-    // }
-    // if (this->x && this->y) {
-    //     x = this->x;
-    //     y = this->y;
-    // }
+    if (this->root.w && this->root.h){
+        w = this->root.w;
+        h = this->root.h;
+    }
+    if (this->root.x && this->root.y)
+    {
+        x = this->root.x;
+        y = this->root.y;
+    }
 
     // w = atoi(getenv("NAVIT_W"));
     // h = atoi(getenv("NAVIT_Y"));
-    w = 800;
-    h = 200;
+    // w = 800;
+    // h = 200;
 
     g_signal_connect(G_OBJECT(this->win), "delete-event", G_CALLBACK(gui_gtk_delete), nav);
     this->vbox = gtk_vbox_new(FALSE, 0);
