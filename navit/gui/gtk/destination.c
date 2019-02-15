@@ -429,7 +429,7 @@ int destination_address(struct navit *nav) {
     struct tracking *tracking;
     struct country_search *cs;
     struct item *item;
-
+    int x = 0, y = 50;
 
     search->nav=nav;
     search->ms=navit_get_mapset(nav);
@@ -439,6 +439,9 @@ int destination_address(struct navit *nav) {
     gtk_window_set_title(GTK_WINDOW(window2),_("Enter Destination"));
     gtk_window_set_wmclass (GTK_WINDOW (window2), "navit", "Navit");
     gtk_window_set_default_size (GTK_WINDOW (window2),0,300);
+    if (x != 0 || y != 0) {
+        gtk_window_move(GTK_WINDOW(window2), x, y);
+    }
     vbox = gtk_vbox_new(FALSE, 0);
     table = gtk_table_new(3, 8, FALSE);
 

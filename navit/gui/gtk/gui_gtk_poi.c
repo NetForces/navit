@@ -298,6 +298,7 @@ void gtk_gui_poi(struct navit *nav) {
     GtkWidget *label_category, *label_poi;
     GtkWidget *listbox_cat, *listbox_poi;
     GtkCellRenderer *renderer;
+    int x = 0, y = 50;
 
     struct gtk_poi_search *search=&gtk_poi_search;
     search->nav=nav;
@@ -306,6 +307,9 @@ void gtk_gui_poi(struct navit *nav) {
     gtk_window_set_title(GTK_WINDOW(window2),_("POI search"));
     gtk_window_set_wmclass (GTK_WINDOW (window2), "navit", "Navit");
     gtk_window_set_default_size (GTK_WINDOW (window2),700,550);
+    if (x != 0 || y != 0) {
+        gtk_window_move(GTK_WINDOW(window2), x, y);
+    }
     vbox = gtk_vbox_new(FALSE, 0);
     table = gtk_table_new(4, 4, FALSE);
 

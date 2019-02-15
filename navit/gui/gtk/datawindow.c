@@ -171,6 +171,7 @@ struct datawindow_priv *
 gui_gtk_datawindow_new(struct gui_priv *gui, const char *name, struct callback *click, struct callback *close,
                        struct datawindow_methods *meth) {
     struct datawindow_priv *win;
+    int x = 0, y = 50;
 
     if (!gui)
         return NULL;
@@ -178,6 +179,9 @@ gui_gtk_datawindow_new(struct gui_priv *gui, const char *name, struct callback *
     win=g_new0(struct datawindow_priv, 1);
     win->window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size(GTK_WINDOW(win->window), 320, 200);
+    if (x != 0 || y != 0) {
+        gtk_window_move(GTK_WINDOW(win->window), x, y);
+    }
     gtk_window_set_title(GTK_WINDOW(win->window), name);
     gtk_window_set_wmclass (GTK_WINDOW (win->window), "navit", "Navit");
 
